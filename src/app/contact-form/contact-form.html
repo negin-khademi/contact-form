@@ -1,1 +1,55 @@
-<p>contact-form works!</p>
+<div class=" w-full py-6">
+  <form [formGroup]="contactForm" (ngSubmit)="submitForm()"
+    class="md:w-[60%] lg:w-[50%] px-3 mx-3  bg-white min-h-dvh rounded-lg">
+    <p class="text-xl font-bold w-full py-4 px-3">Contact Us</p>
+
+    <div class="px-3">
+      <label for="firstname" class="w-full text-sm">First name <span>*</span></label>
+
+      <input id="firstname" type="text" formControlName="firstname"
+        class="border border-solid border-neutrals-500 rounded-md w-full py-2 my-2">
+    </div>
+
+    <div class="mt-2 px-3">
+      <label for="lastname" class="w-full text-sm">Last name <span>*</span></label>
+
+      <input id="lastname" type="text" formControlName="lastname"
+        class="border border-solid border-neutrals-500 rounded-md w-full py-2 my-2">
+    </div>
+
+    <div class="mt-2 px-3">
+      <label for="email" class="w-full text-sm">Email <span>*</span></label>
+      <input id="email" type="text" formControlName="email"
+        class="border border-solid border-neutrals-500 rounded-md w-full py-2 my-2">
+    </div>
+
+    <div class="mt-2 px-3">
+      <label>Query type <span>*</span></label>
+      <div class="border border-solid border-neutrals-500 rounded-md py-2 pl-3 mt-2">
+        <input id="general-equity" type="radio" value="general" formControlName="querytype" name="querytype">
+        <label for="general-equity" class="ml-2">General Equity</label>
+      </div>
+      <div class="border border-solid border-neutrals-500 rounded-md py-2 pl-3 mt-2">
+        <input id="support-request" type="radio" value="support" formControlName="querytype" name="querytype">
+        <label for="support-request" class="ml-2">Support Request</label>
+      </div>
+
+    </div>
+
+    <div class="mt-4 px-3">
+      <label for="message" class="w-full ">Message <span>*</span></label>
+      <textarea id="message" formControlName="message"
+        class="border border-solid border-neutrals-500 rounded-md w-full mt-2 h-48"></textarea>
+    </div>
+
+    <div class="mt-4 px-3 grid grid-cols-12">
+      <div class=" col-span-1 flex items-center">
+        <input id="accept" type="checkbox" formControlName="accept">
+      </div>
+      <label for="accept" class=" col-span-11">I consent to being contacted by the team <span>*</span></label>
+    </div>
+    <div class="px-2 my-6">
+      <button type="submit" class="w-full bg-greens-600 text-white py-3 mb-5 rounded-md">Submit</button>
+    </div>
+  </form>
+</div>
