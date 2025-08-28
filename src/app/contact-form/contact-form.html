@@ -9,7 +9,8 @@
         <label for="firstname" class="w-full text-sm">First name <span>*</span></label>
 
         <input id="firstname" type="text" formControlName="firstname"
-          class="border border-solid  rounded-lg w-full py-2 my-2 lg:mt-4 lg:py-3" [ngClass]="{
+          class="border border-solid  rounded-lg w-full py-2 my-2 lg:mt-4 lg:py-3 hover:border-greens-600 hover:cursor-pointer"
+          [ngClass]="{
       'border-neutrals-500': !(contactForm.controls['firstname'].invalid && (contactForm.controls['firstname'].touched || contactForm.controls['firstname'].dirty)),
       'border-red-500': contactForm.controls['firstname'].invalid && (contactForm.controls['firstname'].touched || contactForm.controls['firstname'].dirty)
     }">
@@ -26,7 +27,8 @@
         <label for="lastname" class="w-full text-sm">Last name <span>*</span></label>
 
         <input id="lastname" type="text" formControlName="lastname"
-          class="border border-solid  rounded-lg w-full py-2  lg:mt-4  my-2 lg:py-3" [ngClass]="{
+          class="border border-solid  rounded-lg w-full py-2  lg:mt-4  my-2 lg:py-3 hover:border-greens-600 hover:cursor-pointer"
+          [ngClass]="{
       'border-neutrals-500': !(contactForm.controls['lastname'].invalid && (contactForm.controls['lastname'].touched || contactForm.controls['lastname'].dirty)),
       'border-reds': contactForm.controls['lastname'].invalid && (contactForm.controls['lastname'].touched || contactForm.controls['lastname'].dirty)
     }">
@@ -43,7 +45,8 @@
     <div class="mt-2 px-3">
       <label for="email" class="w-full text-sm">Email <span>*</span></label>
       <input id="email" type="text" formControlName="email"
-        class="border border-solid  rounded-lg w-full py-2  lg:mt-4  lg:py-3 my-2" [ngClass]="{
+        class="border border-solid  rounded-lg w-full py-2  lg:mt-4  lg:py-3 my-2 hover:border-greens-600 hover:cursor-pointer"
+        [ngClass]="{
       'border-neutrals-500': !(contactForm.controls['email'].invalid && (contactForm.controls['email'].touched || contactForm.controls['email'].dirty)),
       'border-red-500': contactForm.controls['email'].invalid && (contactForm.controls['email'].touched || contactForm.controls['email'].dirty)
     }">
@@ -63,11 +66,13 @@
     <div class="mt-2 px-3 lg:mt-5">
       <label>Query type <span>*</span></label>
       <div class="lg:flex gap-6 lg:mt-2">
-        <div class="border border-solid border-neutrals-500 rounded-lg py-2 pl-3 mt-2 lg:w-[50%]  lg:py-3">
+        <div
+          class="border border-solid border-neutrals-500 rounded-lg py-2 pl-3 mt-2 lg:w-[50%]  lg:py-3 hover:cursor-pointer">
           <input id="general-equity" type="radio" value="general" formControlName="querytype" name="querytype">
           <label for="general-equity" class="ml-2">General Equity</label>
         </div>
-        <div class="border border-solid border-neutrals-500 rounded-lg py-2 pl-3 mt-2 lg:w-[50%]  lg:py-3">
+        <div
+          class="border border-solid border-neutrals-500 rounded-lg py-2 pl-3 mt-2 lg:w-[50%]  lg:py-3 hover:cursor-pointer">
           <input id="support-request" type="radio" value="support" formControlName="querytype" name="querytype">
           <label for="support-request" class="ml-2">Support Request</label>
         </div>
@@ -85,7 +90,8 @@
     <div class="mt-4 px-3 lg:mt-5">
       <label for="message" class="w-full ">Message <span>*</span></label>
       <textarea id="message" formControlName="message"
-        class="border border-solid  rounded-lg w-full mt-2  lg:mt-4 h-36 lg:h-24" [ngClass]="{
+        class="border border-solid  rounded-lg w-full mt-2  lg:mt-4 h-36 lg:h-24 hover:border-greens-600 hover:cursor-pointer"
+        [ngClass]="{
       'border-neutrals-500': !(contactForm.controls['message'].invalid && (contactForm.controls['message'].touched || contactForm.controls['message'].dirty)),
       'border-red-500': contactForm.controls['message'].invalid && (contactForm.controls['message'].touched || contactForm.controls['message'].dirty)
     }"></textarea>
