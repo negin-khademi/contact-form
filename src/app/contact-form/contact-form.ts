@@ -15,35 +15,29 @@ import { Component } from "@angular/core";
   styleUrl: "./contact-form.scss",
 })
 export class ContactForm {
-  invalidInput!: string;
-  invalidEmail: string = "";
-  invalidFirstname: string = "";
-  invalidLastname: string = "";
-  invalidMessage: string = "";
+  submitted: boolean = false;
 
   contactForm = new FormGroup({
-    firstname: new FormControl("", [
-      Validators.required,
-      Validators.minLength(3),
-      Validators.maxLength(20),
-    ]),
-    lastname: new FormControl("", [
-      Validators.required,
-      Validators.minLength(3),
-      Validators.maxLength(20),
-    ]),
+    firstname: new FormControl("", [Validators.required]),
+    lastname: new FormControl("", [Validators.required]),
     email: new FormControl("", [
       Validators.required,
       Validators.pattern(/^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/),
     ]),
     querytype: new FormControl("", Validators.required),
-    message: new FormControl("", [
-      Validators.required,
-      Validators.minLength(3),
-      Validators.maxLength(140),
-    ]),
-    accept: new FormControl(""),
+    message: new FormControl("", [Validators.required]),
+    accept: new FormControl(false, Validators.requiredTrue),
   });
 
-  submitForm() {}
+  submitForm() {
+    this.submitted = true;
+    if (this.contactForm.invalid) {
+      // Mark all controls as touched to show errors
+      this.contactForm.markAllAsTouched();
+      return;
+    }
+
+    // proceed with form submission
+    console.log(this.contactForm.value);
+  }
 }

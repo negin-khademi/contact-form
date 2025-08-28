@@ -3,27 +3,63 @@
     class="px-3 mx-3 lg:px-8 lg:py-6 bg-white min-h-dvh rounded-lg">
     <p class="text-3xl font-bold w-full py-4 px-3">Contact Us</p>
     <div class="lg:flex lg:gap-6">
+
+      <!-- first name part -->
       <div class="px-3 lg:px-0 lg:pl-3 lg:w-[50%]">
         <label for="firstname" class="w-full text-sm">First name <span>*</span></label>
 
         <input id="firstname" type="text" formControlName="firstname"
-          class="border border-solid border-neutrals-500 rounded-lg w-full py-2 my-2 lg:mt-4 lg:py-3">
+          class="border border-solid  rounded-lg w-full py-2 my-2 lg:mt-4 lg:py-3" [ngClass]="{
+      'border-neutrals-500': !(contactForm.controls['firstname'].invalid && (contactForm.controls['firstname'].touched || contactForm.controls['firstname'].dirty)),
+      'border-red-500': contactForm.controls['firstname'].invalid && (contactForm.controls['firstname'].touched || contactForm.controls['firstname'].dirty)
+    }">
+        @if (contactForm.controls.firstname.hasError('required') && (contactForm.controls.firstname.dirty ||
+        contactForm.controls.firstname.touched)) {
+        <div class="text-reds text-xs">
+          This field is required.
+        </div>
+        }
       </div>
 
-      <div class="mt-2 lg:mt-0 px-3 lg:px-0 lg:pr-3 lg:w-[50%]">
+      <!-- last name part -->
+      <div div class="mt-2 lg:mt-0 px-3 lg:px-0 lg:pr-3 lg:w-[50%]">
         <label for="lastname" class="w-full text-sm">Last name <span>*</span></label>
 
         <input id="lastname" type="text" formControlName="lastname"
-          class="border border-solid border-neutrals-500 rounded-lg w-full py-2  lg:mt-4  my-2 lg:py-3">
+          class="border border-solid  rounded-lg w-full py-2  lg:mt-4  my-2 lg:py-3" [ngClass]="{
+      'border-neutrals-500': !(contactForm.controls['lastname'].invalid && (contactForm.controls['lastname'].touched || contactForm.controls['lastname'].dirty)),
+      'border-reds': contactForm.controls['lastname'].invalid && (contactForm.controls['lastname'].touched || contactForm.controls['lastname'].dirty)
+    }">
+        @if (contactForm.controls.lastname.hasError('required') && (contactForm.controls.lastname.dirty ||
+        contactForm.controls.lastname.touched)) {
+        <div class="text-reds text-xs">
+          This field is required.
+        </div>
+        }
       </div>
     </div>
 
+    <!-- email part -->
     <div class="mt-2 px-3">
       <label for="email" class="w-full text-sm">Email <span>*</span></label>
       <input id="email" type="text" formControlName="email"
-        class="border border-solid border-neutrals-500 rounded-lg w-full py-2  lg:mt-4  lg:py-3 my-2">
+        class="border border-solid  rounded-lg w-full py-2  lg:mt-4  lg:py-3 my-2" [ngClass]="{
+      'border-neutrals-500': !(contactForm.controls['email'].invalid && (contactForm.controls['email'].touched || contactForm.controls['email'].dirty)),
+      'border-red-500': contactForm.controls['email'].invalid && (contactForm.controls['email'].touched || contactForm.controls['email'].dirty)
+    }">
+      @if (
+      (contactForm.controls['email'].hasError('required')
+      || contactForm.controls['email'].hasError('pattern'))
+      && (contactForm.controls['email'].touched || contactForm.controls['email'].dirty)
+      ) {
+      <div class="text-reds text-xs">
+        Please enter a valid email address.
+      </div>
+      }
     </div>
 
+
+    <!-- Query type part -->
     <div class="mt-2 px-3 lg:mt-5">
       <label>Query type <span>*</span></label>
       <div class="lg:flex gap-6 lg:mt-2">
@@ -37,12 +73,28 @@
         </div>
       </div>
 
+      <!-- Error message if no radio selected -->
+      @if (contactForm.controls['querytype'].hasError('required') && (contactForm.controls['querytype'].touched ||
+      contactForm.controls['querytype'].dirty)) {
+      <div class="text-reds text-xs mt-1">
+        Please select a query type.
+      </div>
+      }
     </div>
 
     <div class="mt-4 px-3 lg:mt-5">
       <label for="message" class="w-full ">Message <span>*</span></label>
       <textarea id="message" formControlName="message"
-        class="border border-solid border-neutrals-500 rounded-lg w-full mt-2  lg:mt-4 h-36 lg:h-24"></textarea>
+        class="border border-solid  rounded-lg w-full mt-2  lg:mt-4 h-36 lg:h-24" [ngClass]="{
+      'border-neutrals-500': !(contactForm.controls['message'].invalid && (contactForm.controls['message'].touched || contactForm.controls['message'].dirty)),
+      'border-red-500': contactForm.controls['message'].invalid && (contactForm.controls['message'].touched || contactForm.controls['message'].dirty)
+    }"></textarea>
+      @if (contactForm.controls.message.hasError('required') && (contactForm.controls.message.dirty ||
+      contactForm.controls.message.touched)) {
+      <div class="text-reds text-xs">
+        This field is required.
+      </div>
+      }
     </div>
 
     <div class="mt-4 px-3 grid grid-cols-12 lg:flex lg:mt-8">
@@ -50,6 +102,16 @@
         <input id="accept" type="checkbox" formControlName="accept">
       </div>
       <label for="accept" class="col-span-11 lg:ml-4">I consent to being contacted by the team <span>*</span></label>
+
+      @if (
+      contactForm.controls['accept'].hasError('requiredTrue') &&
+      (submitted || contactForm.controls['accept'].touched || contactForm.controls['accept'].dirty)
+      ) {
+      <div class="text-red-500 text-xs mt-1">
+        To submit this form, please consent to being contacted.
+      </div>
+      }
+
     </div>
     <div class="px-2 mt-6">
       <button type="submit" class="w-full bg-greens-600 text-white py-3 mb-5 rounded-lg">Submit</button>
