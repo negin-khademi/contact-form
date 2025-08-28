@@ -98,21 +98,24 @@
     </div>
 
     <div class="mt-4 px-3 grid grid-cols-12 lg:flex lg:mt-8">
+
       <div class="col-span-1 flex items-center">
         <input id="accept" type="checkbox" formControlName="accept">
       </div>
-      <label for="accept" class="col-span-11 lg:ml-4">I consent to being contacted by the team <span>*</span></label>
+      <label for="accept" class="col-span-11 lg:ml-4 ">
+        I consent to being contacted by the team <span>*</span></label>
 
-      @if (
-      contactForm.controls['accept'].hasError('requiredTrue') &&
-      (submitted || contactForm.controls['accept'].touched || contactForm.controls['accept'].dirty)
-      ) {
-      <div class="text-red-500 text-xs mt-1">
-        To submit this form, please consent to being contacted.
-      </div>
-      }
+
 
     </div>
+    @if ((contactForm.controls.accept.hasError('requiredTrue')|| contactForm.controls.accept.invalid) &&
+    (contactForm.controls.accept.dirty ||
+    contactForm.controls.accept.touched))
+    {
+    <div class="text-reds text-xs mt-1 w-full pl-3">
+      To submit this form, please consent to being contacted.
+    </div>
+    }
     <div class="px-2 mt-6">
       <button type="submit" class="w-full bg-greens-600 text-white py-3 mb-5 rounded-lg">Submit</button>
     </div>

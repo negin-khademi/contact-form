@@ -26,7 +26,7 @@ export class ContactForm {
     ]),
     querytype: new FormControl("", Validators.required),
     message: new FormControl("", [Validators.required]),
-    accept: new FormControl(false, Validators.requiredTrue),
+    accept: new FormControl(false, [Validators.requiredTrue]),
   });
 
   submitForm() {
