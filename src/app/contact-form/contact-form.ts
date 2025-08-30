@@ -32,6 +32,7 @@ export class ContactForm {
 
   submitForm() {
     if (this.contactForm.valid) {
+      this.submitted = true;
       this.formSubmitted.emit();
       this.contactForm.reset();
     } else {
@@ -39,10 +40,6 @@ export class ContactForm {
       this.contactForm.markAllAsTouched();
       return;
     }
-    this.submitted = true;
-    // if (this.contactForm.invalid) {
-
-    // }
 
     // proceed with form submission
     console.log(this.contactForm.value);
