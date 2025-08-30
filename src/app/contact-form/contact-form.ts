@@ -1,3 +1,4 @@
+import { Component, EventEmitter, Output } from "@angular/core";
 import {
   FormControl,
   FormGroup,
@@ -6,7 +7,6 @@ import {
 } from "@angular/forms";
 
 import { CommonModule } from "@angular/common";
-import { Component } from "@angular/core";
 
 @Component({
   selector: "app-contact-form",
@@ -16,6 +16,7 @@ import { Component } from "@angular/core";
 })
 export class ContactForm {
   submitted: boolean = false;
+  @Output() formSubmitted = new EventEmitter<void>();
 
   contactForm = new FormGroup({
     firstname: new FormControl("", [Validators.required]),
@@ -30,12 +31,18 @@ export class ContactForm {
   });
 
   submitForm() {
-    this.submitted = true;
-    if (this.contactForm.invalid) {
+    if (this.contactForm.valid) {
+      this.formSubmitted.emit();
+      this.contactForm.reset();
+    } else {
       // Mark all controls as touched to show errors
       this.contactForm.markAllAsTouched();
       return;
     }
+    this.submitted = true;
+    // if (this.contactForm.invalid) {
+
+    // }
 
     // proceed with form submission
     console.log(this.contactForm.value);
